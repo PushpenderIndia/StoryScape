@@ -7,9 +7,9 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
     margin: 0;
-    /* overflow: hidden; */
+    overflow: hidden;
 }
 
 .background-image {
@@ -27,11 +27,8 @@ body {
 
 
 .gif-container {
-    margin-bottom: 20px; /* Adjust margin bottom to create space between loading-ladki and loading-container */
-    max-width: 18rem;
-    display: flex;
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
+    margin-top: 30px;
+    margin-left: 150px;
 }
 
 .gif-container img {
@@ -80,28 +77,24 @@ body {
     animation-delay: calc(0.1s * var(--i));
 }
 
-.loader-container {
-    width: 100%;
-    position: relative;
-    margin-top: 0px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column; /* Adjust to column direction */
-}
-
 .border {
-    width: 100%;
+    width: 99%;
     height: 10px;
     background-color: transparent;
     border: 3px solid #02140c;
     border-radius: 50px;
-    position: relative; /* Adjust positioning */
-    top: 20px; /* Adjust vertical position */
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 1;
 }
 
-
-
+.loader-container {
+    width: 100%;
+    position: relative;
+    margin-top: 0px;
+}
 
 .loader {
     width: 0;
@@ -135,16 +128,8 @@ body {
     }
 
     .loading-container {
-        position: absolute;
-        top: calc(50% + (18rem / 2) + 40px); /* 50% (center) + half of loading-ladki height + margin-top */
-        left: 50%;
-        transform: translate(-50%, -50%);
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        z-index: 1; /* Ensure it's above the wave animation */
+        margin-top: 40px;
     }
-    
 
     .background-image {
         background-size: cover;

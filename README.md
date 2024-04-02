@@ -144,7 +144,21 @@ In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies
 # How We Built It 🛠️👷‍♂️
 
  - User inputs a topic with story plot
- - The Text Prompt is then 
+ - The Text Prompt is then given to Intel Mistral Optimised version (Neural Chat)
+ - Raw Comic Dialogues Text is then parsed using Post Processing functions which gives result in JSON Format
+ - Based on the Comic Topic, a Dynamic Image Generation prompt is written using Neural Chat for generating Comic Poster
+ - Dynamic Image prompt is then given to Image Generation Model (Intel Optimized Stable Diffusion)
+ - Similarly for generating comic scenes, a dynamic image prompt is generated using neuralchat by supplying Comic Scene Dialogue
+ - Then that dynamically generated prompt is used to generate Comic scenes using Stable Diffusion
+ - Multithreading is used for parallel image & text generation 
+ - Once Comic Images are generated, we write the text over image using OpenCV in comic font
+ - Then Finally we merge the images using custom Image List to PDF generator code
+ - Celery worker runs the above task & updates the Redis db for saving the progress
+ - We have created a Flask-Restful api which is connected to redis for fetching the progress
+ - Loading page calls this api every 2 seconds and shows the progress on the page
+ - Onces the api status is completed, the page automatically loads the Comic viewer
+ - Comic viewer has the functionality to either read the comic on website itself using realistic page turn animation & providing immersive comic reading experience
+ - Also at the end of comic page, there is a option to download the comic in PDF format
 
 ## Use case of Intel® Developer Cloud (IDC)
 - The platform utilizes Intel's Image Generation API (Intel Optimised Stable Diffusion)
@@ -154,13 +168,28 @@ Mistral7B) to generate story script based on inputs.
 
 ## Installation
 ```
+# Install Redis
 sudo apt install redis-server nginx python3-pip -y
 sudo systemctl start redis-server
 sudo systemctl enable redis-server
 sudo service redis-server status 
 
+# Install VirtualEnv
+pip3 install virtualenv
+
+# Clone Project
+git clone https://github.com/PushpenderIndia/StoryScape.git
+
+# Navigate to folder
+cd StoryScape
+
+# Create Virtual Environment
 virtualenv venv
+
+# Activate Virtual Env.
 source venv/bin/activate
+
+# Install Requirements
 pip install -r requirements.txt
 ```
 

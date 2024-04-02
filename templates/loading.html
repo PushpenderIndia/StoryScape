@@ -5,11 +5,46 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/static/css/loading.css">
+    <link rel="stylesheet" href="/static/css/wave_animation.css">
+    <link rel="stylesheet" href="/static/css/comic_animation.css">
+    <link rel="stylesheet" href="/static/css/comic_scroll.css">
+
     <title>Please wait for a min ...</title>
 </head>
 
 <body>
-    <div class="background-image"></div>
+    
+    <!-- Wave Animation Start -->
+    <div class="waveWrapper waveAnimation">
+        <div class="waveWrapperInner bgTop">
+            <div class="wave waveTop"
+                style="background-image: url('http://front-end-noobs.com/jecko/img/wave-top.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgMiddle">
+            <div class="wave waveMiddle"
+                style="background-image: url('http://front-end-noobs.com/jecko/img/wave-mid.png')"></div>
+        </div>
+        <div class="waveWrapperInner bgBottom">
+            <div class="wave waveBottom"
+                style="background-image: url('http://front-end-noobs.com/jecko/img/wave-bot.png')"></div>
+        </div>
+    </div>
+
+    <!-- Wave animation end -->
+
+    <!-- partial:index.partial.html -->
+    <div class="container">
+        <div class="text-container">
+            <h3 class="min">00</h3>
+            <h3 class="dot">:</h3>
+            <h3 class="sec">00</h3>
+        </div>
+    </div>
+    <!-- partial -->
+
+    <script  src="/static/js/script.js"></script>
+
+    <!-- <div class="background-image"></div> -->
     <div class="loading-container">
 
         <img src="/static/img/load.gif" class="loading-ladki" alt="Loading GIF">
@@ -31,12 +66,17 @@
             <span style="--i:10;">.</span>
         </div>
     </div>
+    <div class="scroll-container">
+
+    <div class="scroll-box"></div>
+    </div>
+</div>
     <script>
         const topic = '{{topic}}';
         const comic_style = '{{comic_style}}';
         console.log("Topic: ", topic);
         console.log("Comic Style: ", comic_style);
-    
+
         // Function to fetch the task ID
         const fetchTaskId = async () => {
             try {
@@ -50,7 +90,7 @@
                 console.error('Error:', error);
             }
         };
-    
+
         // Function to fetch task status and handle response
         const fetchTaskStatus = async (taskId) => {
             try {
@@ -65,7 +105,7 @@
                     var base64Url = btoa(pdf_link);
                     var base64URL_comicImages = btoa(comicImages.join(','));
                     window.location.href = `/comic?topic=${encodeURIComponent(topic)}&img=${encodeURIComponent(base64URL_comicImages)}&pdf=${encodeURIComponent(base64Url)}`;
-                } 
+                }
                 else if (data.status == "PROGRESS") {
                     updateWavyText(data.progress);
                     setTimeout(() => fetchTaskStatus(taskId), 2000);
@@ -85,16 +125,16 @@
             wavyText.innerHTML = '';
             for (let i = 0; i < text.length; i++) {
                 const span = document.createElement('span');
-                if (text[i]==' '){
+                if (text[i] == ' ') {
                     span.textContent = '.'
                 } else {
                     span.textContent = text[i];
-                }  
+                }
                 span.style.setProperty('--i', i + 1);
                 wavyText.appendChild(span);
             }
         };
-    
+
         // Fetch the task ID and start fetching task status
         fetchTaskId().then(taskId => {
             if (taskId) {

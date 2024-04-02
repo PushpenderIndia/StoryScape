@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/loading.css">
+    <title>Please wait for a min ...</title>
+</head>
+
+<body>
+    <div class="background-image"></div>
+    <div class="loading-container">
+
+        <img src="/static/img/load.gif" class="loading-ladki" alt="Loading GIF">
+
+        <div class="loader-container">
+            <div class="border"></div>
+            <div class="loader" id="loader"></div>
+        </div>
+        <div class="wavy" id="wavyText">
+            <span style="--i:1;">L</span>
+            <span style="--i:2;">O</span>
+            <span style="--i:3;">A</span>
+            <span style="--i:4;">D</span>
+            <span style="--i:5;">I</span>
+            <span style="--i:6;">N</span>
+            <span style="--i:7;">G</span>
+            <span style="--i:8;">.</span>
+            <span style="--i:9;">.</span>
+            <span style="--i:10;">.</span>
+        </div>
+    </div>
+    <script>
+        const topic = '{{topic}}';
+        const comic_style = '{{comic_style}}';
+        console.log("Topic: ", topic);
+        console.log("Comic Style: ", comic_style);
+    
+        // Function to fetch the task ID
+        const fetchTaskId = async () => {
+            try {
+                const response = await fetch(`/generate?topic=${encodeURIComponent(topic)}&comic=${encodeURIComponent(comic_style)}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json(); // Parse the JSON response
+                return data.task_id;
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+    
+        // Function to fetch task status and handle response
+        const fetchTaskStatus = async (taskId) => {
+            try {
+                const response = await fetch(`/task-status/${taskId}`);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json(); // Parse the JSON response
+                if (data.status === 'SUCCESS') {
+                    const comicImages = data.result.img;
+                    const pdf_link = data.result.output;
+                    var base64Url = btoa(pdf_link);
+                    var base64URL_comicImages = btoa(comicImages.join(','));
+                    window.location.href = `/comic?topic=${encodeURIComponent(topic)}&img=${encodeURIComponent(base64URL_comicImages)}&pdf=${encodeURIComponent(base64Url)}`;
+                } 
+                else if (data.status == "PROGRESS") {
+                    updateWavyText(data.progress);
+                    setTimeout(() => fetchTaskStatus(taskId), 2000);
+                }
+                else {
+                    // If task is not yet complete, fetch again after 2 seconds
+                    setTimeout(() => fetchTaskStatus(taskId), 2000);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
+        };
+
+        // Function to update wavy text
+        const updateWavyText = (text) => {
+            const wavyText = document.getElementById('wavyText');
+            wavyText.innerHTML = '';
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement('span');
+                if (text[i]==' '){
+                    span.textContent = '.'
+                } else {
+                    span.textContent = text[i];
+                }  
+                span.style.setProperty('--i', i + 1);
+                wavyText.appendChild(span);
+            }
+        };
+    
+        // Fetch the task ID and start fetching task status
+        fetchTaskId().then(taskId => {
+            if (taskId) {
+                fetchTaskStatus(taskId);
+            }
+        });
+    </script>
+    <script src="/static/js/loading.js"></script>
+</body>
+
+</html>

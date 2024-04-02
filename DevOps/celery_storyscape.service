@@ -1,0 +1,18 @@
+[Unit]
+Description=Celery Worker Service
+After=network.target
+
+[Service]
+User=jenkins
+Group=www-data
+WorkingDirectory=/var/lib/jenkins/workspace/StoryScape
+ExecStart=/var/lib/jenkins/workspace/StoryScape/venv/bin/celery -A app.celery worker --loglevel=INFO
+Environment="PATH=/var/lib/jenkins/workspace/StoryScape/venv/bin:/usr/local/bin:/usr/bin:/bin"
+Restart=always
+RestartSec=10
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=celery
+
+[Install]
+WantedBy=multi-user.target

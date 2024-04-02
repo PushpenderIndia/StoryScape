@@ -141,16 +141,16 @@ In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies
     -   **MongoDB** For Storing user informations & other important data
     -   **Intel Developer Cloud:** Leveraging Intel's high-performance CPU and XPU capabilities, we accelerated model training and inference processes, reducing processing time and improving overall performance. ⚡💻
 
-# What It Does 🤖🚀
-Our application offers an immersive and interactive experience for users seeking visual learning or for generating comics for fun. Here's a breakdown of its key functionalities:
-
 # How We Built It 🛠️👷‍♂️
 
- -  Developed frontend using React for a modular and reusable UI. 💻🔧
- -  Implemented backend with Flask for RESTful APIs and data processing. 🐍🚀
- -  Integrated various machine learning models for outfit recommendation, virtual try-on, and fashion chatbot functionalities. 🤖⚙️
- -  Implemented virtual try-on feature with complex image processing and machine learning techniques. 📷🔄
- -  Integrated a fashion chatbot leveraging natural language processing (NLP) capabilities. 💬🤖
+ - User inputs a topic with story plot
+ - The Text Prompt is then 
+
+## Use case of Intel® Developer Cloud (IDC)
+- The platform utilizes Intel's Image Generation API(Intel Stable Diffusion)
+to transform the textual content into visually captivating comic panels
+- The web application triggers the Intel Text Generation API (Intel
+Mistral7B) to generate story script based on inputs.
 
 ## Installation
 ```

@@ -98,6 +98,8 @@ environment.
 Utilizing the resources provided by Intel Developer Cloud significantly expedited our AI model development and deployment processes. Specifically, we harnessed the power of Intel's CPU and XPU to accelerate two critical components of our project: Comics Dialogues Generation and Comic Scenes Generation. 💻⚡
 
 1.  **Mistral 7B:** The Intel Developer Cloud's CPU and XPU capabilities
+
+[Google Colab](https://colab.research.google.com/drive/1JOsc8c64vIL2g3VuDmedPJJuOfoB2fz5?usp=sharing)
     
 2.  **Text-to-Image Generation:** The Text-to-Outfit Generator
 
@@ -200,5 +202,6 @@ celery -A app.celery worker --loglevel=info
 ## Deployment on production server using Jenkins
 1. Install Jenkins on Server: https://www.jenkins.io/doc/book/installing/
 2. Update Jenkinsfile credentials [Line 8]
-3. Create new pipeline on Jenkins Dashboard
-4. Click on Built Now
+3. Update DevOps/storyscape.conf [Line 4] - server_name
+4. Create new pipeline on Jenkins Dashboard
+5. Click on Built Now

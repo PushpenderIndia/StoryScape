@@ -98,10 +98,6 @@ environment.
 Utilizing the resources provided by Intel Developer Cloud significantly expedited our AI model development and deployment processes. Specifically, we harnessed the power of Intel's CPU and XPU to accelerate two critical components of our project: Comics Dialogues Generation and Comic Scenes Generation. 💻⚡
 
 1.  **Mistral 7B:** The Intel Developer Cloud's CPU and XPU capabilities
-
-![Comparison Graph](images/textGenerationComparison.png)
-
->Comparison between time took in Intel Developers Cloud using OneDNN and Google Colab
     
 2.  **Text-to-Image Generation:** The Text-to-Outfit Generator
 
@@ -134,8 +130,7 @@ In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies
 65e090a8817eff4d91da58b0)
     
 4.  **Other Technologies:** In addition to React, Flask, and machine learning models, our application utilizes a range of other technologies to enhance performance, security, and user experience. These include:
-    
-    -   **Gradio:** A user-friendly library for creating connection between front end and ml models, enabling seamless integration of AI features into our application. 🚀🤝
+
     -   **Celery:** Comic Generation usually takes more than 30 secs, which can leads to 502 Gateway error, so we've implemented Celery Worker by which the comic generation pipeline will be executed on server.
     -   **Redis** It is used as Broker & Caching Database to boost the performance & also used in developing flask api for showing comic progress on fronted (Loading Page)
     -   **MongoDB** For Storing user informations & other important data
@@ -144,27 +139,26 @@ In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies
 # How We Built It 🛠️👷‍♂️
 
  - User inputs a topic with story plot
- - The Text Prompt is then given to Intel Mistral Optimised version (Neural Chat)
- - Raw Comic Dialogues Text is then parsed using Post Processing functions which gives result in JSON Format
- - Based on the Comic Topic, a Dynamic Image Generation prompt is written using Neural Chat for generating Comic Poster
- - Dynamic Image prompt is then given to Image Generation Model (Intel Optimized Stable Diffusion)
+ - The `Input Text` is then given to `Intel Mistral Optimised version` (Neural Chat)
+ - `Raw Comic Dialogues Text` is then parsed using `Post Processing functions` which `returns` the `result` in `JSON Format`
+ - `For Generating Comic Poster`, a Dynamic Image Generation prompt is generated using Neural Chat by supplying comic topic.
+ - `Dynamic Image prompt` is then `given to Image Generation Model` (Intel Optimized Stable Diffusion)
  - Similarly for generating comic scenes, a dynamic image prompt is generated using neuralchat by supplying Comic Scene Dialogue
  - Then that dynamically generated prompt is used to generate Comic scenes using Stable Diffusion
- - Multithreading is used for parallel image & text generation 
- - Once Comic Images are generated, we write the text over image using OpenCV in comic font
- - Then Finally we merge the images using custom Image List to PDF generator code
- - Celery worker runs the above task & updates the Redis db for saving the progress
- - We have created a Flask-Restful api which is connected to redis for fetching the progress
- - Loading page calls this api every 2 seconds and shows the progress on the page
- - Onces the api status is completed, the page automatically loads the Comic viewer
- - Comic viewer has the functionality to either read the comic on website itself using realistic page turn animation & providing immersive comic reading experience
- - Also at the end of comic page, there is a option to download the comic in PDF format
+ - `Multithreading` is used for `parallel image & text generation`
+ - Once Comic Images are generated, we `write` the `text on top of image` using `OpenCV` in `comic font`
+ - Then Finally we merge the images using custom `Image List to PDF generator` code
+ - `Celery worker` runs the above task & updates the `Redis db` for `saving` the `progress`
+ - We have created a `Flask-Restful api` which is connected to redis for `fetching the progress`
+ - `Loading page` calls this api `every 2 seconds` and shows the `progress` on the page
+ - Onces the `api status is completed`, the page automatically `loads` the `Comic viewer`
+ - `Comic viewer` has the functionality to either `read the comic on website itself` using `realistic page turn animation` & providing immersive comic reading experience
+ - Also at the end of comic page, there is a option to `download` the `comic in PDF format`
 
 ## Use case of Intel® Developer Cloud (IDC)
-- The platform utilizes Intel's Image Generation API (Intel Optimised Stable Diffusion)
+- The platform utilizes Intel's Image Generation API (`Intel Optimised Stable Diffusion`)
 to transform the textual content into visually captivating comic panels
-- The web application triggers the Intel Text Generation API (Intel Optimized
-Mistral7B) to generate story script based on inputs.
+- The web application triggers the Intel Text Generation API (`Intel Optimized Mistral7B`) to generate story script based on inputs.
 
 ## Installation
 ```

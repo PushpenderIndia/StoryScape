@@ -105,7 +105,7 @@ Utilizing the resources provided by Intel Developer Cloud significantly expedite
     
 2.  **Text-to-Image Generation:** The Text-to-Outfit Generator
 
-![Comparison Graph](Demos/StableDiffusionComparison.jpeg)
+![Comparison Graph](Demos/StableDiffusionComparision.jpeg)
 
 >Comparison between time took in Intel Developers Cloud using OneDNN and Google Colab
     

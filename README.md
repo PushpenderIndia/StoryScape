@@ -164,12 +164,12 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-# Run in Terminal - 1
+## Run in Terminal - 1
 ```
 python app.py
 ```
 
-# Run in Terminal - 2
+## Run in Terminal - 2
 ```
 celery -A app.celery worker --loglevel=info
 ```

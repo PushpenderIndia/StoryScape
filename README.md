@@ -99,11 +99,13 @@ Utilizing the resources provided by Intel Developer Cloud significantly expedite
 
 1.  **Mistral 7B:** The Intel Developer Cloud's CPU and XPU capabilities
 
+![Comparison Graph](Demos/MistralComparision.png)
+
 [Google Colab](https://colab.research.google.com/drive/1JOsc8c64vIL2g3VuDmedPJJuOfoB2fz5?usp=sharing)
     
 2.  **Text-to-Image Generation:** The Text-to-Outfit Generator
 
-![Comparison Graph](images/textToImageComparison.png)
+![Comparison Graph](Demos/StableDiffusionComparison.png)
 
 >Comparison between time took in Intel Developers Cloud using OneDNN and Google Colab
     

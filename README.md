@@ -75,9 +75,10 @@ environment.
 
 - This code snippet demonstrates the utilization of a Mistral 7B Text Generator model, leveraging a pretrained model from Hugging Face. 
 - Facilitating the generation of comic dialogues based on textual prompts. 
-- For Generating dynamic image generation prompts for specifying minute details about the comic scenes.
+- For Creating High quality comic scene images, we are Generating dynamic image prompts for specifying minute details about the comic scenes, these dynamic image prompts are created using neuralchat by supplying comic scene dialogue.
 - By loading the model onto the available device along with our custom post processing code, the script efficiently processes the input prompt and produces comic dialogues in a Json format. 
 - Notably, running this code in **Google Colab** takes lots of time, but leveraging **Intel's CPU** or **XPU** helps us reduce the generation time in few seconds. 🚀
+- We have used NeuralChat (which is a Intel Mistral 7B Optimised model) for its blazing fast speed and high accuracy
 
 ![generated image](Demos/ComicDialogue.jpeg)
 

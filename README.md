@@ -163,9 +163,9 @@ In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies
  - Also at the end of comic page, there is a option to `download` the `comic in PDF format`
 
 ## Use case of Intel® Developer Cloud (IDC)
-- The platform utilizes Intel's Image Generation API (`Intel Optimised Stable Diffusion`)
+- The platform utilizes Intel's Image Generation API hosted on IDC (`Intel Optimised Stable Diffusion`)
 to transform the textual content into visually captivating comic panels
-- The web application triggers the Intel Text Generation API (`Intel's Neural-Chat`) to generate story script based on inputs.
+- The web application triggers the Intel Text Generation API hosted on IDC (`Intel's Neural-Chat`) to generate story script based on inputs.
 
 ## Installation
 ```

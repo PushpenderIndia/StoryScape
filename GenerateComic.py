@@ -50,19 +50,18 @@ class GenerateComic:
     def convert_text_to_conversation(self, text):
         try:
             # response = g4f.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": text}])
-            print(text)
             response = g4f.ChatCompletion.create(model="airoboros-70b", messages=[{"role": "user", "content": text}])
             print(response)
             speech, person = self.generate_map_from_text(response)
-            print("Speech: ", speech)
-            print("Person: ", person)
+            # print("Speech: ", speech)
+            # print("Person: ", person)
 
             self.printer(f"[+] Translating dialogues into {self.lang_code} ...")
             final_speech = {}
             for key, value in speech.items():
                 final_speech[key] = self.lang_translate(value)
 
-            print("Final Speech: ", final_speech)
+            # print("Final Speech: ", final_speech)
 
             return (final_speech, person)
         except Exception as e:

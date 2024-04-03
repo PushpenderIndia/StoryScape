@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const topic = topicInput.value;
         const comic_style = document.getElementById("comic_style").value;
         const comic_language = document.getElementById("comic_language").value;
-        window.location.href=`/loading?topic=${encodeURIComponent(topic)}}&comic=${encodeURIComponent(comic_style)}&lang=${encodeURIComponent(comic_language)}`     
+        window.location.href=`/loading?topic=${encodeURIComponent(topic)}&comic=${encodeURIComponent(comic_style)}&lang=${encodeURIComponent(comic_language)}`     
     }
 
 });

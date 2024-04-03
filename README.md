@@ -80,11 +80,12 @@ environment.
 - Notably, running this code in **Google Colab** takes lots of time, but leveraging **Intel's CPU** or **XPU** helps us reduce the generation time in few seconds. 🚀
 - We have used NeuralChat (which is a Intel Mistral 7B Optimised model) for its blazing fast speed and high accuracy
 
-![generated image](Demos/ComicDialogue.jpeg)
+![user input example image](Demos/user_input_neuralchat_api.png)
+![dialogues and character extraction for comic](Demos/neuralchat_conversation_extract.png)
 
 >Prompt : Funny Cindralla story in Disney Princes style
 
-**Folder Link** : [Click Here](https://github.com/pushpenderindia/StoryScape/tree/main/ComicDialogueGenerator)
+**Notebook Link** : [Click Here](https://github.com/PushpenderIndia/StoryScape/blob/main/ComicDialogueGenerator/GenerateComicDialogueAPI.ipynb)
 
 <a name="Comics-Scenes-Generator"></a>
 ## Comics-Scenes-Generator 👤🚀
@@ -100,18 +101,20 @@ Utilizing the resources provided by Intel Developer Cloud significantly expedite
 
 1.  **Neural Chat:** fine-tuned by Intel 7B parameter LLM on the Intel Gaudi 2 processor from the mistralai/Mistral-7B-v0.1 and run on `intel_extension_for_transformers` performed exceptionally well compared to other tested models of the same family - Mistral 7B
 
-![Comparison Graph](https://github.com/PushpenderIndia/StoryScape/assets/92091338/4184a3ec-aa46-4302-86d0-1a5b1f370901)
+![Comparison Graph](Demos/MistralComparision_NeuralChat.jpeg)
 
 
-[Kaggle Notebook Link](https://www.kaggle.com/code/spignelon/intel-optimised-vs-mistral-comparision/notebook)
+[Kaggle Notebook Link](https://www.kaggle.com/code/spignelon/intel-optimised-vs-mistral-comparision/notebook) | [Folder Link](https://github.com/PushpenderIndia/StoryScape/tree/main/ComicDialogueGenerator)
     
-2.  **Text-to-Image Generation:** The Text-to-Outfit Generator
+2.  **Text-to-Image Generation:** Text to Image generation using Stable Diffusion using IPEX on Intel Developers Cloud vs normal Stable Diffusion run on Kaggle
 
 ![Comparison Graph](Demos/StableDiffusionComparision.jpeg)
 
->Comparison between time took in Intel Developers Cloud using OneDNN and Google Colab
+>Comparison between time took in Intel Developers Cloud using IPEX and Kaggle
     
-In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies significantly accelerated our project's development and deployment timelines by expediting model training and inference processes. 🚀🕒
+In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies, using their Intel Extension For Pytorch (IPEX) and their Intel Extension For Transformers significantly accelerated our model and inference time and project's development. 🚀🕒
+
+[Folder Link](https://github.com/PushpenderIndia/StoryScape/tree/main/ComicSceneGenerator)
 
 # Flow Diagram 🔄📊
 
@@ -131,7 +134,7 @@ In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies
 
 3.  **Machine Learning Models:** Our app utilizes advanced machine learning models developed with TensorFlow, PyTorch, and Hugging Face Transformers for intelligent features like comics dialogue and scene generation with custom characters. 🤖⚙️
     -   **Image Generation** - [HuggingFace](https://huggingface.co/collections/Intel/stable-diffusion-65e0914ce1349d31319a9ef0)
-    -   **Text Generation** - [HuggingFace](https://huggingface.co/collections/Intel/mistral-65e090a8817eff4d91da58b0)
+    -   **Text Generation** - [HuggingFace](https://huggingface.co/collections/Intel/intel-neural-chat-65b3d2f2d0ba0a801668ef2c)
     
 4.  **Other Technologies:** In addition to React, Flask, and machine learning models, our application utilizes a range of other technologies to enhance performance, security, and user experience. These include:
 

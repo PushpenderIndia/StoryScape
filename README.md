@@ -73,7 +73,7 @@ environment.
 <a name="Comics-Dialogue-Generator"></a>
 ## Comics-Dialogue-Generator 📝
 
-- This code snippet demonstrates the utilization of a Mistral 7B Text Generator model, leveraging a pretrained model from Hugging Face. 
+- This code snippet demonstrates the utilization of Intel Neural-Chat Text Generation model, leveraging a pretrained model from Hugging Face. 
 - Facilitating the generation of comic dialogues based on textual prompts. 
 - For Creating High quality comic scene images, we are Generating dynamic image prompts for specifying minute details about the comic scenes, these dynamic image prompts are created using neuralchat by supplying comic scene dialogue.
 - By loading the model onto the available device along with our custom post processing code, the script efficiently processes the input prompt and produces comic dialogues in a Json format. 
@@ -94,7 +94,7 @@ environment.
 - The model is designed to generate visually appealing comic scenes. 
 - The Intel OneDNN helped in reducing the time for training, and the optimized PyTorch for Intel Hardwares helped us in reducing the time for training. 🌐🖼️🤖💪
 
-**Folder Link** : [Click Here](https://github.com/pushpenderindia/StoryScape/tree/main/ComicScenesGenerator)
+[IPEX Optimised Stable Diffusion](https://github.com/PushpenderIndia/StoryScape/blob/main/ComicSceneGenerator/ipex_stable_diffusion.ipynb) | [Normal Stable Diffusion](https://github.com/PushpenderIndia/StoryScape/blob/main/ComicSceneGenerator/normal_stable_diffusion_comparison.ipynb)
 
 # Usage of oneAPI and Intel Developer Cloud 🌐💻
 Utilizing the resources provided by Intel Developer Cloud significantly expedited our AI model development and deployment processes. Specifically, we harnessed the power of Intel's CPU and XPU to accelerate two critical components of our project: Comics Dialogues Generation and Comic Scenes Generation. 💻⚡

@@ -158,13 +158,11 @@ def comic_view():
 def login():
     if "127.0.0.1" in request.url_root or "localhost" in request.url_root:
         return redirect('dashboard')
-    return redirect('https://www.witeso.com/login?redirect=https://storyscape.witeso.com')
 
 @app.route('/logout')
 def logout():
     if "127.0.0.1" in request.url_root or "localhost" in request.url_root:
         return redirect(request.url_root)
-    return redirect("https://www.witeso.com/logout?redirect=https://storyscape.witeso.com")
 
 if __name__ == '__main__':
     app.run(debug=True)

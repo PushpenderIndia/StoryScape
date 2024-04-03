@@ -165,7 +165,7 @@ In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies
 ## Use case of Intel® Developer Cloud (IDC)
 - The platform utilizes Intel's Image Generation API (`Intel Optimised Stable Diffusion`)
 to transform the textual content into visually captivating comic panels
-- The web application triggers the Intel Text Generation API (`Intel Optimized Mistral7B`) to generate story script based on inputs.
+- The web application triggers the Intel Text Generation API (`Intel's Neural-Chat`) to generate story script based on inputs.
 
 ## Installation
 ```

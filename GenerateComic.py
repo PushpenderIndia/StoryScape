@@ -2,7 +2,7 @@ import os
 import io
 from PIL import Image, ImageDraw, ImageFont
 from stability_sdk import client
-import stability_sdk.interfaces.gooseai.generation.generation_pb2 as generation
+from gradio_client import Client
 import cv2
 import re
 import g4f
@@ -11,6 +11,7 @@ import string
 import concurrent.futures
 from PIL import Image
 from easygoogletranslate import EasyGoogleTranslate
+import requests, json 
 
 # These 3 lines are required for pymongo to work
 import dns.resolver
@@ -47,11 +48,25 @@ class GenerateComic:
         else:
             return self.translator.translate(text)
 
+    def gen_text(self, text):
+        ## This is temporary link, we have deployed our Model on Intel Developer Cloud
+        url = 'https://049e-146-152-233-52.ngrok-free.app/api/generate'
+        payload = {
+            "model": "neural-chat",
+            "prompt": text,
+            "stream": False
+        }
+        headers = {'Content-Type': 'application/json'}
+
+        response1 = requests.post(url, data=json.dumps(payload), headers=headers)
+
+        # print(response1.json()["response"])
+        response = response1.json()["response"]
+        print(response)
+
     def convert_text_to_conversation(self, text):
-        try:
-            # response = g4f.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": text}])
-            response = g4f.ChatCompletion.create(model="airoboros-70b", messages=[{"role": "user", "content": text}])
-            print(response)
+        try:  
+            response = self.gen_text(text) 
             speech, person = self.generate_map_from_text(response)
             # print("Speech: ", speech)
             # print("Person: ", person)
@@ -90,33 +105,11 @@ class GenerateComic:
             return (d, who_spoke)
         except Exception as e:
             raise Exception(f"Error occurred during map generation: {e}")
-        
-    def set_stable_diff_api(self, images_length):
-        api_collection = self.db.api
-        api_data = api_collection.find_one()
-        if api_data['count'] > images_length:
-            self.STABILITY_KEY = api_data['api']
-            print("[+] Stable API: ", api_data['api'])
-            api_collection.update_one({'api': api_data['api']}, {"$set": {'count': api_data['count']-images_length}})
-        else:
-            
-            api_collection.delete_one({'api': api_data['api']})
-            self.set_stable_diff_api(images_length)
-
-    def delete_stable_diff_api(self, api_key, email_addr=None, password=None):
-        api_collection = self.db.api 
-        if email_addr and password:
-            api_data   = api_collection.find_one({"api": api_key})
-            email_addr = api_data["email"]
-            password   = api_data["password"] 
-        
-        api_collection.delete_one({'api': api_key}) 
 
     def generate_prompt_for_img_generation(self, comic_name, person, speech, character_list, user_input):
         try:
             prompt = f'Write a detailed prompt for generating a {comic_name} style comic scene where "{person}" says this speech: "{speech}", following are the characters: {character_list}, prompt should be of 60 words (max) which I can use to generate a image using stable diffusion. This speech is on "{user_input}" topic'
-            response = g4f.ChatCompletion.create(model="airoboros-70b", messages=[{"role": "user", "content": prompt}])
-            # response = g4f.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": prompt}])
+            response = self.gen_text(prompt)
             return response
         except:
             return f"""
@@ -125,48 +118,21 @@ class GenerateComic:
                 """
 
     def stable_diff(self, image_prompt, image_name, cfg, step):
-        stability_api = client.StabilityInference(
-            key=self.STABILITY_KEY,
-            verbose=True,
-            engine="stable-diffusion-xl-beta-v2-2-2",
-        )
+        stable_diff_client = Client("https://b2c5cbebec4bd5072d.gradio.live/")
         try:
-            answer = stability_api.generate(
+            answer = stable_diff_client.predict(
                 prompt=image_prompt,
-                seed=992446758,
-                steps=int(step),
-                cfg_scale=int(cfg),
-                width=512,
-                height=512,
-                samples=1,
-                sampler=generation.SAMPLER_K_DPMPP_2M
+                api_name="/predict",
             )
             folder_path = "static/img/comic"
 
-            for resp in answer:
-                for artifact in resp.artifacts:
-                    if artifact.finish_reason == generation.FILTER:
-                        raise Exception(
-                            "Your request activated the API's safety filters and could not be processed. Please modify the prompt and try again")
-
-                    if artifact.type == generation.ARTIFACT_IMAGE:
-                        image_path = f"{folder_path}/{image_name}.png"
-                        img_binary = io.BytesIO(artifact.binary)
-                        img = Image.open(img_binary)
-                        img.save(image_path)
-                        return image_path
+            image_path = f"{folder_path}/{image_name}.png"
+            img_binary = io.BytesIO(answer)
+            img = Image.open(img_binary)
+            img.save(image_path)
+            return image_path
         except Exception as e:
             error_message = str(e)
-            balance_err = "Your organization does not have enough balance to request this action"
-            details_match = re.search('details = "(.*?)"', error_message)
-            if details_match:
-                details = details_match.group(1)
-                if details.startswith(balance_err):
-                    self.delete_stable_diff_api(self.STABILITY_KEY) 
-                    raise Exception("Insufficient balance in stable diffusion key. Please top up and try again.")
-                error_message = details
-            else:
-                error_message = error_message
             print(error_message)
             raise Exception(error_message)
 
@@ -272,10 +238,7 @@ class GenerateComic:
             self.printer(response)
             self.printer("[+] Generated Successfully")
 
-            # self.printer("[-] Fetching Fresh Stable API ...")
             total_scenes = len(response[0]) 
-            self.set_stable_diff_api(total_scenes)
-            # self.printer("[+] Fetched Successfully")
 
             self.printer("[-] Generating Comic Poster ...")
             try:

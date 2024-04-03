@@ -84,7 +84,7 @@ environment.
 
 >Prompt : Funny Cindralla story in Disney Princes style
 
-**Folder Link** : [Click Here](https://github.com/pushpenderindia/StoryScape/tree/main/ComicDialogueGenerator)
+**Notebook Link** : [Click Here](https://github.com/PushpenderIndia/StoryScape/blob/main/ComicDialogueGenerator/GenerateComicDialogueAPI.ipynb)
 
 <a name="Comics-Scenes-Generator"></a>
 ## Comics-Scenes-Generator 👤🚀
@@ -103,7 +103,7 @@ Utilizing the resources provided by Intel Developer Cloud significantly expedite
 ![Comparison Graph](Demos/MistralComparision_NeuralChat.jpeg)
 
 
-[Kaggle Notebook Link](https://www.kaggle.com/code/spignelon/intel-optimised-vs-mistral-comparision/notebook) | [Github Folder](https://github.com/PushpenderIndia/StoryScape/tree/main/ComicDialogueGenerator)
+[Kaggle Notebook Link](https://www.kaggle.com/code/spignelon/intel-optimised-vs-mistral-comparision/notebook) | [Folder Link](https://github.com/PushpenderIndia/StoryScape/tree/main/ComicDialogueGenerator)
     
 2.  **Text-to-Image Generation:** Text to Image generation using Stable Diffusion using IPEX on Intel Developers Cloud vs normal Stable Diffusion run on Kaggle
 
@@ -113,7 +113,7 @@ Utilizing the resources provided by Intel Developer Cloud significantly expedite
     
 In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies, using their Intel Extension For Pytorch (IPEX) and their Intel Extension For Transformers significantly accelerated our model and inference time and project's development. 🚀🕒
 
-[Jupyter Notebooks Github Link](https://github.com/PushpenderIndia/StoryScape/tree/main/ComicSceneGenerator)
+[Folder Link](https://github.com/PushpenderIndia/StoryScape/tree/main/ComicSceneGenerator)
 
 # Flow Diagram 🔄📊
 

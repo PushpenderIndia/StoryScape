@@ -113,7 +113,7 @@ Utilizing the resources provided by Intel Developer Cloud significantly expedite
     
 In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies, using their Intel Extension For Pytorch (IPEX) and their Intel Extension For Transformers significantly accelerated our model and inference time and project's development. 🚀🕒
 
-![Jupyter Notebooks Github Link](https://github.com/PushpenderIndia/StoryScape/tree/main/ComicSceneGenerator)
+[Jupyter Notebooks Github Link](https://github.com/PushpenderIndia/StoryScape/tree/main/ComicSceneGenerator)
 
 # Flow Diagram 🔄📊
 

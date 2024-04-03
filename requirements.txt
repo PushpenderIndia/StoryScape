@@ -19,6 +19,7 @@ colorama==0.4.6
 convertapi==1.6.0
 cytoolz==0.12.3
 dnspython==2.5.0
+easygoogletranslate==0.0.4
 eth-account==0.11.0
 eth-hash==0.6.0
 eth-keyfile==0.7.0

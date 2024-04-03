@@ -27,7 +27,7 @@ content or taboo topics to visually appealing comics/manga.
 
 # Demonstration of the Project
 
-[Click here to watch the demo video](https://acnvxeqqxhmuzwfvzebn.supabase.co/storage/v1/object/public/personal_pro/demo-final.mp4?t=2024-03-12T03%3A32%3A10.017Z)
+[Click here to watch the demo video](Demos/final.mp4)
 
 ## Problem Statement
 - Nowadays students face problem due to `low attention span` which is less than a gold fish.
@@ -51,10 +51,10 @@ population are `visual learners`, So learning from textual content leads to
 
 - User can `specify plot` & `characters` of the storyline `or just enter a topic` and it will generate a comic book as per their `comic style` i.e. `Marvel`, `DC`, `Disney Princess`, `Anime` etc.
 
-- Our platform will utilize `image-to-image transformations` using `Stable
-Diffusion` or Gen AI models.
+- Our platform will utilize `text-to-image transformations` using `Stable
+Diffusion`.
 
-- We will optimize the pipeline to `generate a comic under 30 secs` using `Multithreading` & `Caching database (Redis)`.
+- We will optimize the pipeline to `generate a comic under 30-50 secs` using `Multithreading` & `Caching database (Redis)`.
 
 ## Features Offered
 - [X] Generate in your favourite comic style i.e. Marvel, DC, etc
@@ -203,10 +203,3 @@ python app.py
 ```
 celery -A app.celery worker --loglevel=info
 ```
-
-## Deployment on production server using Jenkins
-1. Install Jenkins on Server: https://www.jenkins.io/doc/book/installing/
-2. Update Jenkinsfile credentials [Line 8]
-3. Update DevOps/storyscape.conf [Line 4] - server_name
-4. Create new pipeline on Jenkins Dashboard
-5. Click on Built Now

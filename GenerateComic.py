@@ -272,10 +272,10 @@ class GenerateComic:
             self.printer(response)
             self.printer("[+] Generated Successfully")
 
-            self.printer("[-] Fetching Fresh Stable API ...")
+            # self.printer("[-] Fetching Fresh Stable API ...")
             total_scenes = len(response[0]) 
             self.set_stable_diff_api(total_scenes)
-            self.printer("[+] Fetched Successfully")
+            # self.printer("[+] Fetched Successfully")
 
             self.printer("[-] Generating Comic Poster ...")
             try:

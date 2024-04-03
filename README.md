@@ -100,18 +100,20 @@ Utilizing the resources provided by Intel Developer Cloud significantly expedite
 
 1.  **Neural Chat:** fine-tuned by Intel 7B parameter LLM on the Intel Gaudi 2 processor from the mistralai/Mistral-7B-v0.1 and run on `intel_extension_for_transformers` performed exceptionally well compared to other tested models of the same family - Mistral 7B
 
-![Comparison Graph](https://github.com/PushpenderIndia/StoryScape/assets/92091338/4184a3ec-aa46-4302-86d0-1a5b1f370901)
+![Comparison Graph](Demos/MistralComparision_NeuralChat.jpeg)
 
 
-[Kaggle Notebook Link](https://www.kaggle.com/code/spignelon/intel-optimised-vs-mistral-comparision/notebook)
+[Kaggle Notebook Link](https://www.kaggle.com/code/spignelon/intel-optimised-vs-mistral-comparision/notebook) | [Github Folder](https://github.com/PushpenderIndia/StoryScape/tree/main/ComicDialogueGenerator)
     
-2.  **Text-to-Image Generation:** The Text-to-Outfit Generator
+2.  **Text-to-Image Generation:** Text to Image generation using Stable Diffusion using IPEX on Intel Developers Cloud vs normal Stable Diffusion run on Kaggle
 
 ![Comparison Graph](Demos/StableDiffusionComparision.jpeg)
 
->Comparison between time took in Intel Developers Cloud using OneDNN and Google Colab
+>Comparison between time took in Intel Developers Cloud using IPEX and Kaggle
     
-In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies significantly accelerated our project's development and deployment timelines by expediting model training and inference processes. 🚀🕒
+In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies, using their Intel Extension For Pytorch (IPEX) and their Intel Extension For Transformers significantly accelerated our model and inference time and project's development. 🚀🕒
+
+![Jupyter Notebooks Github Link](https://github.com/PushpenderIndia/StoryScape/tree/main/ComicSceneGenerator)
 
 # Flow Diagram 🔄📊
 

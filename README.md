@@ -104,7 +104,7 @@ Utilizing the resources provided by Intel Developer Cloud significantly expedite
 ![Comparison Graph](Demos/MistralComparision_NeuralChat.jpeg)
 
 
-[Kaggle Notebook Link](https://www.kaggle.com/code/spignelon/intel-optimised-vs-mistral-comparision/notebook) | [Folder Link](https://github.com/PushpenderIndia/StoryScape/tree/main/ComicDialogueGenerator)
+[Intel Optimised Neural Chat vs Normal Mistral Comparision](https://www.kaggle.com/code/spignelon/intel-optimised-vs-mistral-comparision/notebook)
     
 2.  **Text-to-Image Generation:** Text to Image generation using Stable Diffusion using IPEX on Intel Developers Cloud vs normal Stable Diffusion run on Kaggle
 

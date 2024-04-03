@@ -34,13 +34,15 @@
     <script>
         const topic = '{{topic}}';
         const comic_style = '{{comic_style}}';
+        const lang_code ='{{lang_code}}';
         console.log("Topic: ", topic);
         console.log("Comic Style: ", comic_style);
+        console.log("lang: ", lang_code);
     
         // Function to fetch the task ID
         const fetchTaskId = async () => {
             try {
-                const response = await fetch(`/generate?topic=${encodeURIComponent(topic)}&comic=${encodeURIComponent(comic_style)}`);
+                const response = await fetch(`/generate?topic=${encodeURIComponent(topic)}&comic=${encodeURIComponent(comic_style)}&lang=${encodeURIComponent(lang_code)}`);
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
                 }

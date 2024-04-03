@@ -68,6 +68,13 @@
                                     <option name="Anime">Anime</option>
                                     <option name="Disney Princes">Disney Princes</option>
                                 </select>
+                                <label for="comic_language">Language</label>
+                                <select id="comic_language" name="lang" class="chakra-textarea css-bxqpz7" style="height: 38px;" />
+                                {% for lang in lang_list %}
+                                    <option name="{{lang}}">{{lang}}</option>
+                                {% endfor %}
+                                    
+                                </select>
                                 <div class="chakra-input__group css-bx0blc" data-group="true">
                                     
                                     <input id="topic" name="topic" placeholder="Type a topic e.g. Blockchain" class="chakra-textarea css-bxqpz7" style="height: 38px;" />

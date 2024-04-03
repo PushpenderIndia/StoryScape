@@ -21,6 +21,25 @@ app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'  # Redis result
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
 
+
+
+language_symbols = {
+    "English": "en",
+    "Spanish": "es",
+    "French": "fr",
+    "Hindi": "hi",
+    "Arabic": "ar",
+    "Bengali": "bn",
+    "Telugu": "te",
+    "Marathi": "mr",
+    "Tamil": "ta",
+    "Urdu": "ur",
+    "Gujarati": "gu",
+    "Kannada": "kn",
+    "Odia": "or",
+    "Punjabi": "pa"
+}
+
 # API Code
 api = Api(app)
 
@@ -37,7 +56,7 @@ def login_required(f):
     return decorated_function
 
 @celery.task(bind=True)
-def generate_comic_task(self, topic, comic):
+def generate_comic_task(self, topic, comic,lang):
     try:
         output_path = f"static/pdfs/{topic[:30].lower().replace(' ', '_').replace('-', '_')}.pdf"
         test = GenerateComic(MONGODB_URI, update_state=self.update_state)
@@ -55,9 +74,10 @@ class Generate(Resource):
         try:
             topic = request.args.get('topic')  
             comic = request.args.get('comic')  
+            lang_code = request.args.get('language')
 
             # Call the Celery task asynchronously
-            result = generate_comic_task.apply_async(args=[topic, comic])
+            result = generate_comic_task.apply_async(args=[topic, comic, lang_code])
             return {"task_id": result.id}
         except Exception as e:
             return {"error": str(e)}
@@ -109,15 +129,20 @@ def login_page():
 @login_required
 def index():
     user_full_name = session.get('user_full_name')
-    user_id = session.get('id')  
+    user_id = session.get('id') 
+    lang_list=language_symbols.keys() 
 
-    return render_template('home.html', full_name=user_full_name)
+
+    return render_template('home.html', full_name=user_full_name, lang_list=lang_list)
 
 @app.route('/loading')
 def loading():
     topic = request.args.get("topic")
     comic = request.args.get('comic')  
-    return render_template('loading.html', topic=topic, comic_style=comic)
+    lang = request.args.get('lang','en')
+    lang_code = language_symbols.get(lang, lang) 
+
+    return render_template('loading.html', topic=topic, comic_style=comic,lang_code=lang_code)
 
 @app.route('/comic')
 def comic_view():

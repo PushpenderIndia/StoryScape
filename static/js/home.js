@@ -29,7 +29,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function generateContent() {
         const topic = topicInput.value;
         const comic_style = document.getElementById("comic_style").value;
-        window.location.href=`/loading?topic=${encodeURIComponent(topic)}&comic=${encodeURIComponent(comic_style)}`     
+        const comic_language = document.getElementById("comic_language").value;
+        window.location.href=`/loading?topic=${encodeURIComponent(topic)}}&comic=${encodeURIComponent(comic_style)}&lang=${encodeURIComponent(comic_language)}`     
     }
 
 });

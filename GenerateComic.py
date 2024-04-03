@@ -1,7 +1,6 @@
 import os
 import io
 from PIL import Image, ImageDraw, ImageFont
-from stability_sdk import client
 from gradio_client import Client
 import cv2
 import re
@@ -22,7 +21,6 @@ from pymongo import MongoClient
 class GenerateComic:
     def __init__(self, MONGODB_URI, update_state=None, lang_code="en"):
         self.MONGODB_URI     = MONGODB_URI
-        self.STABILITY_KEY   = ""
         self.update_state = update_state
         self.lang_code = lang_code
 
@@ -213,23 +211,6 @@ class GenerateComic:
             print("Error [process_comic_page()]: ", e)
 
     def start(self, user_input, customisation, cfg, step, output_path):
-        # return [
-        #         'static/img/comic/1.png',    
-        #         'static/img/comic/2.png',   
-        #         'static/img/comic/3.png',   
-        #         'static/img/comic/4.png',   
-        #         'static/img/comic/5.png',   
-        #         'static/img/comic/6.png',   
-        #         'static/img/comic/7.png',   
-        #         'static/img/comic/8.png', 
-        #         'static/img/comic/9.png',   
-        #         'static/img/comic/10.png',   
-        #         'static/img/comic/11.png',  
-        #         'static/img/comic/12.png',   
-        #         'static/img/comic/13.png',   
-        #         'static/img/comic/14.png',
-        #         'static/img/comic/15.png'          
-        #     ]
         try: 
             self.printer("[-] Generating Comic Content ...")
             prompt = "Convert the following boring text into a comic style conversation between characters while retaining information. Try to keep the characters as people from the story. Make 6 scenes comic. Keep a line break after each dialogue and don't include words like Scene 1, narration context and scenes etc. Keep the name of the character and not character number: \n\n\n"
@@ -242,7 +223,7 @@ class GenerateComic:
 
             self.printer("[-] Generating Comic Poster ...")
             try:
-                comic_poster_image_prompt = g4f.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": f"Generate a prompt for a {customisation} like comic poster on the topic: '{user_input}'"}])
+                comic_poster_image_prompt = self.gen_text(f"Generate a prompt for a {customisation} like comic poster on the topic: '{user_input}'")
             except Exception as e:
                 comic_poster_image_prompt = f"Generate a {customisation} like comic poster on the topic: '{user_input}'"
             image_name = self.generate_random_alpha_string(10)

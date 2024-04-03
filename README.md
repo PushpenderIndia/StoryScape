@@ -95,14 +95,15 @@ environment.
 
 **Folder Link** : [Click Here](https://github.com/pushpenderindia/StoryScape/tree/main/ComicScenesGenerator)
 
-# Usage of Intel Developer Cloud 🌐💻
+# Usage of oneAPI and Intel Developer Cloud 🌐💻
 Utilizing the resources provided by Intel Developer Cloud significantly expedited our AI model development and deployment processes. Specifically, we harnessed the power of Intel's CPU and XPU to accelerate two critical components of our project: Comics Dialogues Generation and Comic Scenes Generation. 💻⚡
 
-1.  **Mistral 7B:** The Intel Developer Cloud's CPU and XPU capabilities
+1.  **Neural Chat:** fine-tuned by Intel 7B parameter LLM on the Intel Gaudi 2 processor from the mistralai/Mistral-7B-v0.1 and run on `intel_extension_for_transformers` performed exceptionally well compared to other tested models of the same family - Mistral 7B
 
-![Comparison Graph](Demos/MistralComparision.jpeg)
+![Comparison Graph](https://github.com/PushpenderIndia/StoryScape/assets/92091338/4184a3ec-aa46-4302-86d0-1a5b1f370901)
 
-[Google Colab](https://colab.research.google.com/drive/1JOsc8c64vIL2g3VuDmedPJJuOfoB2fz5?usp=sharing)
+
+[Kaggle Notebook Link](https://www.kaggle.com/code/spignelon/intel-optimised-vs-mistral-comparision/notebook)
     
 2.  **Text-to-Image Generation:** The Text-to-Outfit Generator
 

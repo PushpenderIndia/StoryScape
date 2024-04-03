@@ -56,10 +56,10 @@ def login_required(f):
     return decorated_function
 
 @celery.task(bind=True)
-def generate_comic_task(self, topic, comic,lang):
+def generate_comic_task(self, topic, comic, lang_code):
     try:
         output_path = f"static/pdfs/{topic[:30].lower().replace(' ', '_').replace('-', '_')}.pdf"
-        test = GenerateComic(MONGODB_URI, update_state=self.update_state)
+        test = GenerateComic(MONGODB_URI, update_state=self.update_state, lang_code=lang_code)
         customisation = comic
         cfg = 9
         step = 25
@@ -75,7 +75,6 @@ class Generate(Resource):
             topic = request.args.get('topic')  
             comic = request.args.get('comic')  
             lang_code = request.args.get('lang')
-            print("hello",lang_code)
 
             # Call the Celery task asynchronously
             result = generate_comic_task.apply_async(args=[topic, comic, lang_code])

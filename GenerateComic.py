@@ -10,6 +10,7 @@ import random
 import string 
 import concurrent.futures
 from PIL import Image
+from easygoogletranslate import EasyGoogleTranslate
 
 # These 3 lines are required for pymongo to work
 import dns.resolver
@@ -18,14 +19,20 @@ dns.resolver.default_resolver.nameservers=['8.8.8.8']
 from pymongo import MongoClient
 
 class GenerateComic:
-    def __init__(self, MONGODB_URI, update_state=None):
+    def __init__(self, MONGODB_URI, update_state=None, lang_code="en"):
         self.MONGODB_URI     = MONGODB_URI
         self.STABILITY_KEY   = ""
         self.update_state = update_state
+        self.lang_code = lang_code
 
         client = MongoClient(os.environ.get('MONGODB_URI', self.MONGODB_URI))
         self.db = client.get_database()
         self.generated_images_paths = {}
+        self.translator = EasyGoogleTranslate(
+            source_language="en",
+            target_language=self.lang_code,
+            timeout=10
+        )
 
     def printer(self, text):
         if self.update_state != None:
@@ -34,12 +41,30 @@ class GenerateComic:
         else:
             print(text)
 
+    def lang_translate(self, text):
+        if self.lang_code == "en":
+            return text 
+        else:
+            return self.translator.translate(text)
+
     def convert_text_to_conversation(self, text):
         try:
             # response = g4f.ChatCompletion.create(model="gpt-3.5-turbo", messages=[{"role": "user", "content": text}])
+            print(text)
             response = g4f.ChatCompletion.create(model="airoboros-70b", messages=[{"role": "user", "content": text}])
+            print(response)
             speech, person = self.generate_map_from_text(response)
-            return (speech, person)
+            print("Speech: ", speech)
+            print("Person: ", person)
+
+            self.printer(f"[+] Translating dialogues into {self.lang_code} ...")
+            final_speech = {}
+            for key, value in speech.items():
+                final_speech[key] = self.lang_translate(value)
+
+            print("Final Speech: ", final_speech)
+
+            return (final_speech, person)
         except Exception as e:
             print("Error: ", e)
 
@@ -288,7 +313,7 @@ if __name__ == "__main__":
     load_dotenv()
 
     MONGODB_URI          = os.environ.get('MONGODB_URI') 
-    test =  GenerateComic(MONGODB_URI)
+    test =  GenerateComic(MONGODB_URI, lang_code="hi")
 
     user_input = "Crime patrol"  
     customisation = "disney" # Enter your favourite comic style like DC, Marvel, Anime or get creative!
@@ -296,3 +321,7 @@ if __name__ == "__main__":
     step = 30 # 0-100     
     output_path     = f"static/pdfs/{user_input[:30].lower().replace(' ', '_').replace('-', '_')}.pdf"
     test.start(user_input, customisation, cfg, step, output_path)
+
+    # prompt = "Convert the following boring text into a comic style conversation between characters while retaining information. Try to keep the characters as people from the story. Make 6 scenes comic. Keep a line break after each dialogue and don't include words like Scene 1, narration context and scenes etc. Keep the name of the character and not character number: \n\n\n"
+    # input = prompt + user_input
+    # test.convert_text_to_conversation(input)

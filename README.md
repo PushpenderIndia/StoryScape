@@ -27,7 +27,7 @@ content or taboo topics to visually appealing comics/manga.
 
 # Demonstration of the Project
 
-[Click here to watch the demo video](Demos/final.mp4)
+[![IMAGE_ALT](https://img.youtube.com/vi/k2ROvOz0Xgg/0.jpg)](https://youtu.be/k2ROvOz0Xgg)
 
 ## Problem Statement
 - Nowadays students face problem due to `low attention span` which is less than a gold fish.

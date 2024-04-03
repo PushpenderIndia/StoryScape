@@ -74,7 +74,8 @@ class Generate(Resource):
         try:
             topic = request.args.get('topic')  
             comic = request.args.get('comic')  
-            lang_code = request.args.get('language')
+            lang_code = request.args.get('lang')
+            print("hello",lang_code)
 
             # Call the Celery task asynchronously
             result = generate_comic_task.apply_async(args=[topic, comic, lang_code])

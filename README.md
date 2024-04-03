@@ -80,7 +80,8 @@ environment.
 - Notably, running this code in **Google Colab** takes lots of time, but leveraging **Intel's CPU** or **XPU** helps us reduce the generation time in few seconds. 🚀
 - We have used NeuralChat (which is a Intel Mistral 7B Optimised model) for its blazing fast speed and high accuracy
 
-![generated image](Demos/ComicDialogue.jpeg)
+![user input example image](Demos/user_input_neuralchat_api.png)
+![dialogues and character extraction for comic](Demos/neuralchat_conversation_extract.png)
 
 >Prompt : Funny Cindralla story in Disney Princes style
 

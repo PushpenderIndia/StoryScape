@@ -129,10 +129,8 @@ In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies
 1.  **Backend - Flask:** Our application's backend was constructed using Flask, a versatile Python web framework. Flask facilitated the development of RESTful APIs, user authentication, data processing, and integration with machine learning models efficiently and swiftly. 🐍🚀
 
 3.  **Machine Learning Models:** Our app utilizes advanced machine learning models developed with TensorFlow, PyTorch, and Hugging Face Transformers for intelligent features like comics dialogue and scene generation with custom characters. 🤖⚙️
-    -   **Image Generation** - ![HuggingFace](https://huggingface.co/collections/Intel/stable-diffusion-
-65e0914ce1349d31319a9ef0)
-    -   **Text Generation** - ![HuggingFace](https://huggingface.co/collections/Intel/mistral-
-65e090a8817eff4d91da58b0)
+    -   **Image Generation** - ![HuggingFace](https://huggingface.co/collections/Intel/stable-diffusion-65e0914ce1349d31319a9ef0)
+    -   **Text Generation** - ![HuggingFace](https://huggingface.co/collections/Intel/mistral-65e090a8817eff4d91da58b0)
     
 4.  **Other Technologies:** In addition to React, Flask, and machine learning models, our application utilizes a range of other technologies to enhance performance, security, and user experience. These include:
 

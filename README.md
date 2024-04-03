@@ -90,9 +90,9 @@ environment.
 <a name="Comics-Scenes-Generator"></a>
 ## Comics-Scenes-Generator 👤🚀
 
-- This code implements an image generation model using Stable Diffusion XL optimised using Intel OpenAPI. 
+- This code implements an image generation model using Stable Diffusion optimised by IPEX and Intel OpenAPI run on Intel Developer Cloud (IDC). 
 - The model is designed to generate visually appealing comic scenes. 
-- The Intel OneDNN helped in reducing the time for training, and the optimized PyTorch for Intel Hardwares helped us in reducing the time for training. 🌐🖼️🤖💪
+- The Intel Developers Cloud XPUs helped in reducing the time of inference, and the optimized PyTorch for Intel Hardwares helped us in reducing the overall time for comic scene generation. 🌐🖼️🤖💪
 
 [IPEX Optimised Stable Diffusion](https://github.com/PushpenderIndia/StoryScape/blob/main/ComicSceneGenerator/ipex_stable_diffusion.ipynb) | [Normal Stable Diffusion](https://github.com/PushpenderIndia/StoryScape/blob/main/ComicSceneGenerator/normal_stable_diffusion_comparison.ipynb)
 
@@ -114,7 +114,7 @@ Utilizing the resources provided by Intel Developer Cloud significantly expedite
     
 In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies, using their Intel Extension For Pytorch (IPEX) and their Intel Extension For Transformers significantly accelerated our model and inference time and project's development. 🚀🕒
 
-[Folder Link](https://github.com/PushpenderIndia/StoryScape/tree/main/ComicSceneGenerator)
+[IPEX Optimised Stable Diffusion](https://github.com/PushpenderIndia/StoryScape/blob/main/ComicSceneGenerator/ipex_stable_diffusion.ipynb) | [Normal Stable Diffusion](https://github.com/PushpenderIndia/StoryScape/blob/main/ComicSceneGenerator/normal_stable_diffusion_comparison.ipynb)
 
 # Flow Diagram 🔄📊
 

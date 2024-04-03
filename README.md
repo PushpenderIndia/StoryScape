@@ -133,7 +133,7 @@ In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies
 
 3.  **Machine Learning Models:** Our app utilizes advanced machine learning models developed with TensorFlow, PyTorch, and Hugging Face Transformers for intelligent features like comics dialogue and scene generation with custom characters. 🤖⚙️
     -   **Image Generation** - [HuggingFace](https://huggingface.co/collections/Intel/stable-diffusion-65e0914ce1349d31319a9ef0)
-    -   **Text Generation** - [HuggingFace](https://huggingface.co/collections/Intel/mistral-65e090a8817eff4d91da58b0)
+    -   **Text Generation** - [HuggingFace](https://huggingface.co/collections/Intel/intel-neural-chat-65b3d2f2d0ba0a801668ef2c)
     
 4.  **Other Technologies:** In addition to React, Flask, and machine learning models, our application utilizes a range of other technologies to enhance performance, security, and user experience. These include:
 

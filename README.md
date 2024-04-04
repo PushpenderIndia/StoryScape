@@ -145,7 +145,6 @@ In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies
 
     -   **Celery:** Comic Generation usually takes more than 30 secs, which can leads to 502 Gateway error, so we've implemented Celery Worker by which the comic generation pipeline will be executed on server.
     -   **Redis** It is used as Broker & Caching Database to boost the performance & also used in developing flask api for showing comic progress on fronted (Loading Page)
-    -   **MongoDB** For Storing user informations & other important data
     -   **Intel Developer Cloud:** Leveraging Intel's high-performance CPU and XPU capabilities, we accelerated model training and inference processes, reducing processing time and improving overall performance. ⚡💻
 
 # How We Built It 🛠️👷‍♂️

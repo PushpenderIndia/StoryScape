@@ -3,8 +3,6 @@ import io
 from PIL import Image, ImageDraw, ImageFont
 from gradio_client import Client
 import cv2
-import re
-import g4f
 import random 
 import string 
 import concurrent.futures
@@ -12,20 +10,10 @@ from PIL import Image
 from easygoogletranslate import EasyGoogleTranslate
 import requests, json 
 
-# These 3 lines are required for pymongo to work
-import dns.resolver
-dns.resolver.default_resolver=dns.resolver.Resolver(configure=False)
-dns.resolver.default_resolver.nameservers=['8.8.8.8']
-from pymongo import MongoClient
-
 class GenerateComic:
-    def __init__(self, MONGODB_URI, update_state=None, lang_code="en"):
-        self.MONGODB_URI     = MONGODB_URI
+    def __init__(self, update_state=None, lang_code="en"):
         self.update_state = update_state
         self.lang_code = lang_code
-
-        client = MongoClient(os.environ.get('MONGODB_URI', self.MONGODB_URI))
-        self.db = client.get_database()
         self.generated_images_paths = {}
         self.translator = EasyGoogleTranslate(
             source_language="en",
@@ -252,11 +240,7 @@ class GenerateComic:
             return f"Error: {e}"
     
 if __name__ == "__main__":
-    from dotenv import load_dotenv
-    load_dotenv()
-
-    MONGODB_URI          = os.environ.get('MONGODB_URI') 
-    test =  GenerateComic(MONGODB_URI, lang_code="hi")
+    test =  GenerateComic(lang_code="hi")
 
     user_input = "Crime patrol"  
     customisation = "disney" # Enter your favourite comic style like DC, Marvel, Anime or get creative!

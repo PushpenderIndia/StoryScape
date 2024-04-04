@@ -1,14 +1,9 @@
 from flask import Flask, request, redirect, render_template, url_for, session, jsonify
 from flask_restful import Resource, Api
-import os
 from functools import wraps
 from celery import Celery
 from GenerateComic import GenerateComic
 import base64 
-from dotenv import load_dotenv
-load_dotenv()
-
-MONGODB_URI          = os.environ.get('MONGODB_URI') 
 
 app = Flask(__name__)
 app.secret_key = 'VeryVeryComify#@666' 
@@ -20,8 +15,6 @@ app.config['CELERY_RESULT_BACKEND'] = 'redis://localhost:6379/0'  # Redis result
 # Initialize Celery
 celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
 celery.conf.update(app.config)
-
-
 
 language_symbols = {
     "English": "en",
@@ -59,7 +52,7 @@ def login_required(f):
 def generate_comic_task(self, topic, comic, lang_code):
     try:
         output_path = f"static/pdfs/{topic[:30].lower().replace(' ', '_').replace('-', '_')}.pdf"
-        test = GenerateComic(MONGODB_URI, update_state=self.update_state, lang_code=lang_code)
+        test = GenerateComic(update_state=self.update_state, lang_code=lang_code)
         customisation = comic
         cfg = 9
         step = 25
@@ -110,13 +103,6 @@ api.add_resource(Generate, '/generate')
 api.add_resource(TaskStatus, '/task-status/<task_id>')
 
 ## Routes
-
-@app.route('/pay', methods=['GET'])
-def pay():
-    base64_url = request.args.get('pdf') 
-    pdf_url = base64.urlsafe_b64decode(base64_url).decode('utf-8')
-
-    return redirect(pdf_url)
 
 @app.route('/')
 def login_page():

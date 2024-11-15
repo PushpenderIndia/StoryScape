@@ -29,7 +29,7 @@ content or taboo topics to visually appealing comics/manga.
 
 - Click on this below image for playing video
 
-[![IMAGE_ALT](https://img.youtube.com/vi/k2ROvOz0Xgg/0.jpg)](https://youtu.be/k2ROvOz0Xgg)
+[![IMAGE_ALT](https://img.youtube.com/vi/LB1D9HrvEZo/0.jpg)](https://youtu.be/LB1D9HrvEZo)
 
 ## Problem Statement
 - Nowadays students face problem due to `low attention span` which is less than a gold fish.

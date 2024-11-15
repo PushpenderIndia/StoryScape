@@ -142,9 +142,10 @@ In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies
 3.  **Machine Learning Models:** Our app utilizes advanced machine learning models developed with TensorFlow, PyTorch, and Hugging Face Transformers for intelligent features like comics dialogue and scene generation with custom characters. 🤖⚙️
     -   **Image Generation** - [HuggingFace](https://huggingface.co/collections/Intel/stable-diffusion-65e0914ce1349d31319a9ef0)
     -   **Text Generation** - [HuggingFace](https://huggingface.co/collections/Intel/intel-neural-chat-65b3d2f2d0ba0a801668ef2c)
-    
-4.  **Other Technologies:** In addition to React, Flask, and machine learning models, our application utilizes a range of other technologies to enhance performance, security, and user experience. These include:
-
+4. **Intel Xeon Processors with AMX**: To accelerate AI operations, especially matrix-heavy computations, ensuring efficient model training and inference.
+5. **Intel OpenVINO Toolkit**: For model optimization and faster inference, enabling real-time comic generation.
+6. **Red Hat OpenShift AI**: A cloud-native platform to deploy and scale our solution seamlessly.
+5.  **Other Technologies:** In addition to React, Flask, and machine learning models, our application utilizes a range of other technologies to enhance performance, security, and user experience. These include:
     -   **Celery:** Comic Generation usually takes more than 30 secs, which can leads to 502 Gateway error, so we've implemented Celery Worker by which the comic generation pipeline will be executed on server.
     -   **Redis** It is used as Broker & Caching Database to boost the performance & also used in developing flask api for showing comic progress on fronted (Loading Page)
     -   **Intel Developer Cloud:** Leveraging Intel's high-performance CPU and XPU capabilities, we accelerated model training and inference processes, reducing processing time and improving overall performance. ⚡💻

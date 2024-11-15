@@ -154,6 +154,9 @@ In summary, leveraging Intel Developer Cloud's advanced CPU and XPU technologies
 
  - User inputs a topic with story plot
  - The `Input Text` is then given to `Intel Mistral Optimised version` (Neural Chat)
+ - `Intel® Xeon® Processors` with `Advanced Matrix Extensions (AMX)`: Accelerated training and inference for text-to-image generation models using AMX-optimized matrix operations, enabling faster and more efficient comic panel creation.
+ - `Intel OpenVINO™ Toolkit`: Optimized our models for faster inference, integrated seamlessly with multiple AI frameworks, and ensured portability for deployment across various platforms.
+ - `Red Hat OpenShift AI Environment`: Deployed and scaled our application in a secure, cloud-native infrastructure, leveraging Intel Xeon processors to streamline AI workloads and enhance development efficiency.
  - `Raw Comic Dialogues Text` is then parsed using `Post Processing functions` which `returns` the `result` in `JSON Format`
  - `For Generating Comic Poster`, a Dynamic Image Generation prompt is generated using Neural Chat by supplying comic topic.
  - `Dynamic Image prompt` is then `given to Image Generation Model` (Intel Optimized Stable Diffusion)

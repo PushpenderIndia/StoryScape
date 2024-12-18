@@ -204,12 +204,12 @@ virtualenv venv
 source venv/bin/activate
 
 # Install Requirements
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Run in Terminal - 1
 ```
-python app.py
+python3 app.py
 ```
 
 ## Run in Terminal - 2
